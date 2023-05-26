@@ -1,0 +1,155 @@
+<div>
+    1~4. 다음 코드의 콘솔창 출력결과는 무엇일까요?
+</div>
+<script>
+
+    // #1
+    함수();
+    function 함수() {
+        console.log(안녕);
+        let 안녕 = 'Hello!';
+    }
+    // udf
+
+    // #2
+    함수();
+    var 함수 = function () {
+        console.log(안녕);
+        var 안녕 = 'Hello!';
+    }
+    // error 
+    // 함수가 아님
+
+    // #3
+    let a = 1;
+    var 함수 = function () {
+        a = 2;
+    }
+    console.log(a);
+    // 1
+
+    // #4
+    let a = 1;
+    var b = 2;
+    window.a = 3;
+    window.b = 4;
+
+    console.log(a + b);
+
+    // 7
+    // a= 1. b=4 임
+    // let변수로 1을 할당하고 글로벌 변수로 3을 할당
+    // 이 경우에는 조금 더 범위가 작고 가까운 1을 참조해서 사용함 왜,,?ㅜ
+</script>
+
+<div>
+    5. 콘솔창에 1초에 한번씩 1부터 5까지의 정수를 출력해주고 싶습니다.
+
+    저번 연습문제에서 setTimeout이라는 유용한 함수를 배운 것 같습니다.
+
+    그래서 코드를 이렇게 작성했습니다.
+
+    setTimeout(function() { console.log(1); }, 1000 );
+    setTimeout(function() { console.log(2); }, 2000 );
+    setTimeout(function() { console.log(3); }, 3000 );
+    setTimeout(function() { console.log(4); }, 4000 );
+    setTimeout(function() { console.log(5); }, 5000 );
+    그럼 1초마다 1~5까지의 숫자를 콘솔창에 출력해줍니다.
+
+    하지만 반복되는 코드가 보기 싫어서 반복문 안에 담았습니다.
+
+    for (var i = 1; i < 6; i++) { setTimeout(function() { console.log(i); }, i*1000 ); } 논리적으로 완벽한 for 반복문입니다. 그런데 반복문으로
+        축약하자마자 제대로 작동하지 않습니다. 계속 5라는 숫자가 1초마다 출력되네요. Q. 위 코드는 왜 의도대로 동작하지 않는 것이죠? 설명해보십시오. -> i를 반복문안에서 최대로 돌린 값을 출력했음.
+        i대신 i++ 을 해야함 ㄴㄴ
+        var 대신 let 을 써야함ㅇㅇ
+</div>
+
+<div>
+    6. 버튼을 누르면 모달창을 띄우고 싶습니다.
+
+    버튼(button)과 모달창(div)가 3개 있습니다.
+
+    <div style="display : none">모달창0</div>
+    <div style="display : none">모달창1</div>
+    <div style="display : none">모달창2</div>
+
+    <button>버튼0</button>
+    <button>버튼1</button>
+    <button>버튼2</button>
+
+    <script>
+  //?
+    </script>
+
+
+    지금 display : none 덕분에 모달창이 아무것도 안보이는 상태입니다.
+
+    자바스크립트를 잘 짜서
+
+    0번째 버튼을 누르면 0번째 모달창,
+
+    1번째 버튼을 누르면 1번째 모달창을 보여주고 싶습니다.
+
+    그럼 코드를 어떻게 짜면 될까요?
+
+
+    여기까진 기본 자바스크립트 내용이니 친절히 알려드리겠습니다.
+
+    <div style="display : none">모달창0</div>
+    <div style="display : none">모달창1</div>
+    <div style="display : none">모달창2</div>
+
+    <button>버튼0</button>
+    <button>버튼1</button>
+    <button>버튼2</button>
+
+    <script>
+        var 버튼들 = document.querySelectorAll('button');
+        var 모달창들 = document.querySelectorAll('div');
+
+        버튼들[0].addEventListener('click', function () {
+            모달창들[0].style.display = 'block';
+        });
+
+        버튼들[1].addEventListener('click', function () {
+            모달창들[1].style.display = 'block';
+        });
+
+        버튼들[2].addEventListener('click', function () {
+            모달창들[2].style.display = 'block';
+        });
+
+    </script>
+    document.querySelectorAll은 jQuery의 $('') 셀렉터와 매우 유사합니다. 동시에 여러 요소를 찾아 어레이 비슷한 자료형에 담아줍니다.
+
+    아무튼 이렇게 쭉 쓰면
+
+    0번째 버튼을 누르면 0번째 모달창,
+
+    1번째 버튼을 누르면 1번째 모달창을 보여줍니다.
+
+    그런데 비슷한 코드들이 좀 보이죠? 이걸 반복문 안에 담아서 한번 다시 개발해보겠습니다.
+
+
+    <script>
+        var 버튼들 = document.querySelectorAll('button');
+        var 모달창들 = document.querySelectorAll('div');
+
+        for (var i = 0; i < 3; i++) {
+
+            버튼들[i].addEventListener('click', function () {
+                모달창들[i].style.display = 'block';
+            });
+
+        }
+
+    </script>
+    이렇게 반복문으로 반복적인 코드를 축약가능합니다.
+
+    그런데 문법에 맞게 쓰긴 했는데 모달창이 제대로 작동하지않고 있습니다.
+
+    Q. 위 코드는 왜 의도대로 동작하지 않는 것이죠? 설명해보십시오.
+
+    그리고 해결할 방법은 무엇일까요?
+    -> var가 아닌 let 변수로 선언해야함
+</div>

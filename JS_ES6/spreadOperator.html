@@ -1,0 +1,70 @@
+<div>
+ ... spread operator
+ 1. 괄호를 없앰
+ 2. 문자에 붙히면 펼쳐줌 (문자에도 안보이는 대괄호가 있음)
+ 3. 함수 파라미터 넣을때
+
+사용할곳
+1. arr합치기, 깊은 복사(독립적인 자료를 만들고싶을때)
+    각각 독립적인 값을 가지도록 Array, Object를 복사 O
+
+
+    * apply
+    * call
+    둘다 똑같은 기능을 하지만 apply는 파라미터를 array형태로 집어넣기 가능
+</div>
+<script>
+
+    var 어레이 = ['hello', 'world'];
+    console.log(어레이);  // ['hello', 'world'];
+    console.log(...어레이);  // hello world
+
+    var 문자 = 'hello';
+    console.log(문자) // h e l l o
+    console.log(...문자)  // console.log('h', 'e', 'l', 'l', 'o') 
+
+    var a =[ 1,2,3];
+    var b=[4,5];
+    var c = [...a, ...b];  // ...a : 1,2,3 / ...b: 4,5
+    console.log(c) // [1,2,3,4,5]
+
+    var o1 = {a:1, b:2};
+    var o2 = {...o1, c:3}
+
+    console.log(o2) // a:1,b:2,c:3
+
+
+    function 더하기(a,b,c){
+        console.log(a+b+c)
+    }
+    var 어레이 = [10,20,30]
+    더하기(어레이[0],어레이[1],어레이[2]); // 주먹구구식
+// ==  
+    더하기.apply(undefined, 어레이); // 옛날방식
+    //Q. 잉 근데 undefined에 적용하는건 뭔소리인가요?
+
+    // A. 실은 그냥 아무곳에도 적용해서 실행하지 않게하기 위해 적은 내용입니다. 그냥 쌩으로 더하기() 함수가 실행됩니다. 
+
+    // 왜냐면 더하기()함수는 어디에도 적용할 필요가 없으니까요. 근데 비워두면 문제가 생기기 때문에 아무 값이나 집어넣은 것입니다.
+    
+// == 
+    더하기(...어레이) //요즘방식
+
+    var person = {
+        인사 : function(){
+            console.log(this.name + '안녕');
+        }
+    }
+    person.인사(); // 안녕
+
+    var person2 = {
+        name :'손흥민'
+    }
+    person2.인사(); // 없어서 안댐
+
+    person.인사() // undefine안녕
+    person.인사.apply(person2,[1,2]); // 손흥민안녕
+
+    person.인사.call(person2,1,2)
+
+</script>
