@@ -1,0 +1,24 @@
+<div>
+
+</div>
+<script>
+    var 학생1 = {
+        name:'kim', 
+        age:15,
+        sayHi : function(){
+            console.log(`안녕하세요 ${this.name}입니다`)
+        }
+    }
+    학생1.sayHi();
+
+    function Ammo(){
+        this.name = 'Kim';
+        this.age = 15;
+        this.sayHi = function(){
+            console.log(`안녕하세요 ${this.name}입니다`)
+        }
+    }  // -> 이것은 constructor 
+    // 이걸 쓰면 object 마구뽑기 가능
+
+    var 학생1 = new Ammo(); // 여기서 object가 뽑힘
+</script>
