@@ -9,14 +9,11 @@ function App() {
 
   let [modal, setModal] = useState(false);
 
-
   let [좋아요, 좋아요변경] = useState(0);
   let [좋아요1, 좋아요변경1] = useState(0);
   let [좋아요2, 좋아요변경2] = useState(0);
 
   let [title, setTitle] = useState(0);
-
-
 
   return (
     <div className="App">
