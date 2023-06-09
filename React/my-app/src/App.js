@@ -40,6 +40,7 @@ function App() {
           )
         })
       }
+      
       <Modal />
       {
         modal == true ? <Modal title={title} 글제목={글제목} /> : null
