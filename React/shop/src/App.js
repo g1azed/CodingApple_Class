@@ -3,13 +3,18 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import { a, data } from './data'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 import Detail from './pages/detail/Detail'
+import About from './Route/about/About'
 
 
 function App() {
   let [shoes] = useState(data)
+  let navigate = useNavigate(); // 페이지 이동을 도와주는  useNavigate()
+
+
+
 
   return (
     <div className="App">
@@ -22,7 +27,9 @@ function App() {
             <Nav.Link href="#features">상의</Nav.Link>
             <Nav.Link href="#pricing">하의</Nav.Link>
             <Link to="/"> 홈 </Link>
-            <Link to="/detail"> 상세페이지 </Link>
+            {/* <Link to="/detail"> 상세페이지 </Link> */}
+            <Nav.Link onClick={() => { navigate(-1) }}> 뒤로가기 </Nav.Link>
+            <Nav.Link onClick={() => { navigate('/detail') }}> 상세페이지 </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -59,7 +66,14 @@ function App() {
             </Container>
           </>
         } />
-        <Route path="/detail" element={ <Detail /> } />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="/about" element={<About />} >
+          <Route path="member " element={ <p> 첫주문 어쩌고</p>} />
+          <Route path="location " element={ <p> 일생기념 쿠폰받기 </p>} />
+        </Route>
+
+        <Route path="*" element={<div> 404 ERRORS </div>} />
+        {/* 404 페이지는 *로 모든 페이지를 가리킴 *표는 에러를 가르킴 */}
       </Routes>
 
 
